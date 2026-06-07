@@ -7,9 +7,9 @@ def main():
     candles = market_data.fetch_ohlcv(limit=100)
 
     strategy = MovingAverageStrategy(window=20)
-    signal = strategy.generate_signal(candles)
+    result = strategy.generate_signal(candles)
 
-    print(f"Sinal gerado: {signal}")
+    print(result)
 
 
 if __name__ == "__main__":

@@ -16,15 +16,31 @@ class MovingAverageStrategy(BaseStrategy):
         current_price = closes[-1]
 
         if average is None:
-            return "HOLD"
+            return {
+                "strategy": "moving_average",
+                "signal": "HOLD",
+                "strength": 0.0
+            }
 
         print(f"Preço atual: {current_price}")
         print(f"Média móvel {self.window}: {average}")
 
         if current_price > average:
-            return "BUY"
+            return {
+                "strategy": "moving_average",
+                "signal": "BUY",
+                "strength": 0.60
+            }
 
         if current_price < average:
-            return "SELL"
+            return {
+                "strategy": "moving_average",
+                "signal": "SELL",
+                "strength": 0.60
+            }
 
-        return "HOLD"
+        return {
+            "strategy": "moving_average",
+            "signal": "HOLD",
+            "strength": 0.0
+        }
