@@ -1,6 +1,7 @@
 from core.decision_engine import DecisionEngine
 from data.market_data import MarketData
 from strategies.moving_average_strategy import MovingAverageStrategy
+from strategies.rsi_strategy import RsiStrategy
 
 
 def main():
@@ -8,8 +9,9 @@ def main():
     candles = market_data.fetch_ohlcv(limit=100)
 
     strategies = [
-        MovingAverageStrategy(window=20)
-    ]
+        MovingAverageStrategy(window=20),
+        RsiStrategy(period=14)
+]
 
     strategy_results = []
 
