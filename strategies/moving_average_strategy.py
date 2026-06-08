@@ -22,9 +22,6 @@ class MovingAverageStrategy(BaseStrategy):
                 "strength": 0.0
             }
 
-        print(f"Preço atual: {current_price}")
-        print(f"Média móvel {self.window}: {average}")
-
         if current_price > average:
             return {
                 "strategy": "moving_average",

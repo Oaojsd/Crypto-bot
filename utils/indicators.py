@@ -34,3 +34,34 @@ def rsi(values, period=14):
     relative_strength = average_gain / average_loss
 
     return 100 - (100 / (1 + relative_strength))
+
+
+def percentage_difference(value_a, value_b):
+    if value_b == 0:
+        return 0
+
+    return ((value_a - value_b) / value_b) * 100
+
+
+def average_candle_range_percent(candles, period=14):
+    if len(candles) < period:
+        return None
+
+    recent_candles = candles[-period:]
+    ranges = []
+
+    for candle in recent_candles:
+        high = candle["high"]
+        low = candle["low"]
+        close = candle["close"]
+
+        if close == 0:
+            continue
+
+        range_percent = ((high - low) / close) * 100
+        ranges.append(range_percent)
+
+    if len(ranges) == 0:
+        return None
+
+    return sum(ranges) / len(ranges)

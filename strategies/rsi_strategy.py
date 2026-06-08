@@ -21,8 +21,6 @@ class RsiStrategy(BaseStrategy):
                 "strength": 0.0
             }
 
-        print(f"RSI {self.period}: {current_rsi}")
-
         if current_rsi < 30:
             return {
                 "strategy": "rsi",

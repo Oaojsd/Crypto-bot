@@ -9,13 +9,18 @@ class MarketData:
     def __init__(self):
         self.base_url = "https://api.binance.com"
 
-    def fetch_ohlcv(self, limit=500):
+    def fetch_ohlcv(self, limit=500, timeframe=None):
         symbol = settings.SYMBOL.replace("/", "")
+
+        selected_timeframe = timeframe
+
+        if selected_timeframe is None:
+            selected_timeframe = settings.TIMEFRAME
 
         url = (
             f"{self.base_url}/api/v3/klines"
             f"?symbol={symbol}"
-            f"&interval={settings.TIMEFRAME}"
+            f"&interval={selected_timeframe}"
             f"&limit={limit}"
         )
 
